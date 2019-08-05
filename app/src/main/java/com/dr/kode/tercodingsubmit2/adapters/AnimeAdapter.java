@@ -5,9 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.dr.kode.movielib.themoviedb.Tontonan;
+import com.dr.kode.movielib.widget.OnFavorite;
 import com.dr.kode.tercodingsubmit2.DetailConstrainedActivity;
-import com.dr.kode.tercodingsubmit2.model.Tontonan;
-import com.dr.kode.tercodingsubmit2.widget.MovieItem;
+import com.dr.kode.movielib.widget.MovieItem;
 
 import org.parceler.Parcels;
 
@@ -20,11 +21,13 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeHolder>
     private List<Tontonan> items;
     private String type;
     private boolean isFavoriteList;
+    private OnFavorite onFavorite;
 
-    public AnimeAdapter(List dt, String type, boolean isFavList) {
+    public AnimeAdapter(List dt, String type, boolean isFavList, OnFavorite handler) {
         this.items = dt;
         this.type = type;
         this.isFavoriteList = isFavList;
+        this.onFavorite = handler;
     }
 
     public void addItems(List items) {
@@ -71,13 +74,9 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeHolder>
                     it.getPosterPath185(),
                     String.valueOf(it.getVoteAverage()),
                     String.valueOf(it.getVoteCount()),
-                    it, type,
-                    () -> {
-                        if (isFavoriteList) {
-                           items.remove(position);
-                           notifyDataSetChanged();
-                        }
-                    }
+                    it,
+                    type,
+                    onFavorite
             );
             item.setOnClickListener(v -> {
                 Intent intent = new Intent(item.getContext(), DetailConstrainedActivity.class);

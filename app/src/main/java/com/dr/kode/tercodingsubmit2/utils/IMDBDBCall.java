@@ -3,13 +3,12 @@ package com.dr.kode.tercodingsubmit2.utils;
 import android.content.Context;
 import android.util.Log;
 
-import com.dr.kode.tercodingsubmit2.model.FavoritesItem;
-import com.dr.kode.tercodingsubmit2.model.Tontonan;
-import com.dr.kode.tercodingsubmit2.model.themoviedb.TheMovieResponse;
+import com.dr.kode.movielib.themoviedb.FavoritesItem;
+import com.dr.kode.movielib.themoviedb.Tontonan;
+import com.dr.kode.movielib.themoviedb.TheMovieResponse;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import io.realm.Realm;

@@ -8,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.dr.kode.movielib.themoviedb.Tontonan;
+import com.dr.kode.movielib.widget.OnFavorite;
 import com.dr.kode.tercodingsubmit2.R;
 import com.dr.kode.tercodingsubmit2.adapters.AnimeAdapter;
-import com.dr.kode.tercodingsubmit2.model.Tontonan;
-import com.dr.kode.tercodingsubmit2.model.themoviedb.TheMovieResponse;
+import com.dr.kode.movielib.themoviedb.TheMovieResponse;
 import com.dr.kode.tercodingsubmit2.utils.IMDBCall;
 import com.dr.kode.tercodingsubmit2.utils.IMDBDBCall;
 import com.google.android.material.snackbar.Snackbar;
@@ -26,7 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class AnimeListFragment extends Fragment {
+public class AnimeListFragment extends Fragment implements OnFavorite {
     private String category;
     private RecyclerView rvContent;
     private ProgressBar progressBar;
@@ -63,7 +64,7 @@ public class AnimeListFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
         srlLayout = view.findViewById(R.id.srlLayout);
 
-        adapter = new AnimeAdapter(new ArrayList<>(), category, caller instanceof IMDBDBCall);
+        adapter = new AnimeAdapter(new ArrayList<>(), category, caller instanceof IMDBDBCall, this);
         LinearLayoutManager lm = new LinearLayoutManager(getContext());
         rvContent.setLayoutManager(lm);
         rvContent.setAdapter(adapter);
@@ -156,5 +157,38 @@ public class AnimeListFragment extends Fragment {
         toggleProgress(false);
         totalData = data.getTotalResults();
         loading = true;
+    }
+
+    @Override
+    public void onChanges() {
+        if (caller instanceof IMDBDBCall) {
+            refresh();
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void add(Tontonan item, String type, String msg) {
+        IMDBDBCall.add(item, type);
+        Snackbar.make(
+                srlLayout,
+                getResources().getString(R.string.added_to_fav, msg),
+                Snackbar.LENGTH_LONG
+        ).show();
+    }
+
+    @Override
+    public void remove(int id, String msg) {
+        IMDBDBCall.remove(id);
+        Snackbar.make(
+                srlLayout,
+                getResources().getString(R.string.remove_from_fav, msg),
+                Snackbar.LENGTH_LONG
+        ).show();
+    }
+
+    @Override
+    public boolean isFavorite(int id) {
+        return IMDBDBCall.isFavorite(id);
     }
 }

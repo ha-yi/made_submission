@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.dr.kode.tercodingsubmit2.model.Tontonan;
+import com.dr.kode.movielib.themoviedb.Tontonan;
 
 import org.parceler.Parcels;
 

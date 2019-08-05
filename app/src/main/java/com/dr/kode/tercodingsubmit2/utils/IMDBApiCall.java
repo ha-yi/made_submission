@@ -6,7 +6,7 @@ import android.util.Log;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.dr.kode.tercodingsubmit2.model.themoviedb.TheMovieResponse;
+import com.dr.kode.movielib.themoviedb.TheMovieResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

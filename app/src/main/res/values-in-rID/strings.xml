@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="anime">Kartun</string>
+    <string name="settings">Pengaturan</string>
+    <string name="change_language">Ganti Bahasa</string>
+    <string name="set_language">Atur Bahasa</string>
+    <string name="back">Kembali</string>
+    <string name="swipe_up_for_details">Tarik ke atas untuk detail</string>
+    <string name="the_anime">The Anime</string>
+    <string name="title">Judul</string>
+    <string name="english_title">Judul Inggris</string>
+    <string name="original_title">Judul Asli</string>
+    <string name="series">Seri</string>
+    <string name="status">Status</string>
+    <string name="premiere">Tahun tayang</string>
+    <string name="popularity_rank">Rangking Populer</string>
+    <string name="voters">Responden</string>
+    <string name="average_rating">Rating rata-rata</string>
+    <string name="age_rating">Rating Usia</string>
+    <string name="title_favorite">Favorit</string>
+    <string name="title_home">Beranda</string>
+    <string name="by_all">Semua</string>
+    <string name="by_favorites">Favorit ku</string>
+    <string name="added_to_fav">%s ditambah ke koleksi favorit</string>
+    <string name="remove_from_fav">%s dihapus dari favorit</string>
+</resources>
